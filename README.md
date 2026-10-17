@@ -35,7 +35,7 @@ laboratorio-concurrencia/
 - C++17 o superior
 - Sistema operativo Linux, macOS o Windows con soporte para compilación C++
 
-Los comandos se ejecutan desde la carpeta `laboratorio-concurrencia`. En Windows (PowerShell), el ejecutable se corre con `.\parte1.exe` en lugar de `./parte1`.
+Los comandos se ejecutan desde la carpeta `laboratorio-concurrencia`. El ejecutable se corre con `.\parte1.exe`.
 
 ## Compilación y ejecución
 
