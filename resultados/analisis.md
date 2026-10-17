@@ -117,10 +117,10 @@ El mejor tiempo individual fue de 22 ms con 16 hilos en la corrida 3, y 16 hilos
 2. **¿El tiempo mejoró siempre al aumentar los hilos?** 
 No. Mejoró de 1 a 2 y de 2 a 4 hilos, pero de 4 en adelante prácticamente se estancó. En la corrida 1, por ejemplo, 8 hilos (40 ms) fue más lento que 4 hilos (37 ms), y en la corrida 2, 16 hilos (38 ms) fue más lento que 8 hilos (35 ms).
 
-3. **¿Cuántos núcleos tiene la computadora donde se ejecutó el programa?** 
+3. **¿Cuántos núcleos tiene la computadora donde se ejecutó el programa?**
 8 núcleos físicos y 16 procesadores lógicos.
 
-4. **¿Qué ocurre cuando se usan más hilos que núcleos disponibles?**
+5. **¿Qué ocurre cuando se usan más hilos que núcleos disponibles?**
 Los hilos no pueden correr todos a la vez: el sistema operativo los turna en los núcleos disponibles. En este equipo, con hasta 16 hilos todos caben en los 16 procesadores lógicos, pero si se usaran más de 16, habría hilos esperando su turno.
 
 6. **¿Qué relación tiene esto con el context switching?** 
