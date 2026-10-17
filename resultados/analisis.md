@@ -120,13 +120,13 @@ No. Mejoró de 1 a 2 y de 2 a 4 hilos, pero de 4 en adelante prácticamente se e
 3. **¿Cuántos núcleos tiene la computadora donde se ejecutó el programa?** 
 8 núcleos físicos y 16 procesadores lógicos.
 
-4. **¿Qué ocurre cuando se usan más hilos que núcleos disponibles?** 
-Los hilos no pueden correr todos a la vez: el sistema operativo los turna en los núcleos disponibles. En este equipo, con hasta 16 hilos todos caben en los 16 procesadores lógicos, pero si se usaran más de 16 (o más de 8 si se cuentan solo los núcleos físicos), habría hilos esperando su turno.
+4. **¿Qué ocurre cuando se usan más hilos que núcleos disponibles?**
+Los hilos no pueden correr todos a la vez: el sistema operativo los turna en los núcleos disponibles. En este equipo, con hasta 16 hilos todos caben en los 16 procesadores lógicos, pero si se usaran más de 16, habría hilos esperando su turno.
 
-5. **¿Qué relación tiene esto con el context switching?** 
+6. **¿Qué relación tiene esto con el context switching?** 
 Cada vez que el sistema cambia el hilo que corre en un núcleo hace un cambio de contexto: guarda el estado del hilo actual y carga el del siguiente. Ese cambio no hace trabajo útil y además afecta la caché, así que cuantos más hilos compiten por los mismos núcleos, más cambios de contexto y más tiempo perdido en administración.
 
-6. **¿Por qué la versión con 16 hilos podría no ser la mejor?** 
+7. **¿Por qué la versión con 16 hilos podría no ser la mejor?** 
 Porque cada hilo adicional agrega costos de creación y administración, y a partir de cierto punto los hilos compiten por el ancho de banda de memoria y por la caché sin que haya más núcleos físicos que aprovechar. Además, los 16 procesadores lógicos comparten recursos de 8 núcleos físicos, por lo que no rinden como 16 núcleos reales. En esta prueba 16 hilos resultó competitivo, pero su ventaja sobre 4 u 8 hilos fue pequeña e inconsistente, y con más hilos que procesadores lógicos o con tareas más cortas el exceso de hilos suele perjudicar.
 
 ## Parte 6:
@@ -158,7 +158,7 @@ Porque cada uno retiene un recurso y espera el que tiene el otro: A tiene el rec
 Es una situación en la que cada hilo de un grupo espera un recurso que tiene el siguiente, formando un ciclo (A espera a B y B espera a A). Es una de las condiciones necesarias del deadlock, junto con exclusión mutua, retención y espera, y no apropiación.
 
 6. **¿Cómo se podría evitar este problema?** 
-Haciendo que todos los hilos tomen los recursos en el mismo orden (siempre recurso 1 y luego recurso 2), usando `std::scoped_lock` (o `std::lock`) para bloquear varios mutex a la vez, usando `try_lock` con reintentos o tiempos de espera, o reduciendo la cantidad de recursos que se mantienen bloqueados al mismo tiempo.
+Haciendo que todos los hilos tomen los recursos en el mismo orden, usando `std::scoped_lock` (o `std::lock`) para bloquear varios mutex a la vez, usando `try_lock` con reintentos o tiempos de espera, o reduciendo la cantidad de recursos que se mantienen bloqueados al mismo tiempo.
 
 ### Versión corregida
 
