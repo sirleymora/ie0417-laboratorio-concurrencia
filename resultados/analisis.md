@@ -9,7 +9,7 @@ No. El orden cambió en cada ejecución, y el hilo 0 no siempre imprimió primer
 Porque el sistema operativo decide cuándo y en qué núcleo corre cada hilo, y esa decisión cambia en cada ejecución. Los hilos arrancan casi al mismo tiempo y compiten por usar `std::cout`. Como `std::cout` es un recurso compartido sin protección, incluso el texto de dos mensajes se puede mezclar.
 
 3. **¿Qué función cumple `join()`?** 
-Hace que el hilo que lo llama (aquí `main`) espere hasta que el hilo asociado termine. Así `main` no imprime "Todos los hilos finalizaron." ni termina el programa hasta que los 5 hilos acaben.
+Hace que el hilo que lo llama espere hasta que el hilo asociado termine. Así `main` no imprime "Todos los hilos finalizaron." ni termina el programa hasta que los 5 hilos acaben.
 
 4. **¿Qué podría pasar si no se llama a `join()`?** 
 Si un `std::thread` sigue "joinable" cuando se destruye, se llama a `std::terminate()` y el programa se aborta. Además, `main` podría terminar antes que los hilos, y estos quedarían sin ejecutarse completos.
